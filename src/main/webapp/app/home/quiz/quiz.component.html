@@ -1,0 +1,227 @@
+<div>
+    <style>
+        .c-btn {
+  background: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.selected-list .c-list .c-token {
+  background: #0079fe;
+}
+.selected-list .c-list .c-token .c-label {
+  color: #fff;
+}
+.selected-list .c-list .c-token .c-remove svg {
+  fill: #fff;
+}
+
+.selected-list .c-angle-down svg,
+.selected-list .c-angle-up svg {
+  fill: #333;
+}
+
+.dropdown-list ul li:hover {
+  background: #f5f5f5;
+}
+
+.arrow-up,
+.arrow-down {
+  border-bottom: 15px solid #fff;
+}
+
+.arrow-2 {
+  border-bottom: 15px solid #ccc;
+}
+
+.list-area {
+  border: 1px solid #ccc;
+  background: #fff;
+  box-shadow: 0px 1px 5px #959595;
+}
+
+.select-all {
+  border-bottom: 1px solid #ccc;
+}
+
+.list-filter {
+  border-bottom: 1px solid #ccc;
+}
+.list-filter .c-search svg {
+  fill: #888;
+}
+.list-filter .c-clear svg {
+  fill: #888;
+}
+
+.pure-checkbox input[type='checkbox']:focus + label:before,
+.pure-checkbox input[type='checkbox']:hover + label:before {
+  border-color: #0079fe;
+  background-color: #f2f2f2;
+}
+
+.pure-checkbox input[type='checkbox'] + label {
+  color: #000;
+}
+
+.pure-checkbox input[type='checkbox'] + label:before {
+  color: #0079fe;
+  border: 1px solid #0079fe;
+}
+
+.pure-checkbox input[type='checkbox'] + label:after {
+  background-color: #0079fe;
+}
+
+.pure-checkbox input[type='checkbox']:disabled + label:before {
+  border-color: #cccccc;
+}
+
+.pure-checkbox input[type='checkbox']:disabled:checked + label:before {
+  background-color: #cccccc;
+}
+
+.pure-checkbox input[type='checkbox'] + label:after {
+  border-color: #ffffff;
+}
+
+.pure-checkbox input[type='radio']:checked + label:before {
+  background-color: white;
+}
+
+.pure-checkbox input[type='checkbox']:checked + label:before {
+  background: #0079fe;
+}
+
+.single-select-mode .pure-checkbox input[type='checkbox']:focus + label:before,
+.single-select-mode .pure-checkbox input[type='checkbox']:hover + label:before {
+  border-color: #0079fe;
+  background-color: #f2f2f2;
+}
+
+.single-select-mode .pure-checkbox input[type='checkbox'] + label {
+  color: #000;
+}
+
+.single-select-mode .pure-checkbox input[type='checkbox'] + label:before {
+  color: transparent !important;
+  border: 0px solid #0079fe;
+}
+
+.single-select-mode .pure-checkbox input[type='checkbox'] + label:after {
+  background-color: transparent !important;
+}
+
+.single-select-mode .pure-checkbox input[type='checkbox']:disabled + label:before {
+  border-color: #cccccc;
+}
+
+.single-select-mode .pure-checkbox input[type='checkbox']:disabled:checked + label:before {
+  background-color: #cccccc;
+}
+
+.single-select-mode .pure-checkbox input[type='checkbox'] + label:after {
+  border-color: #0079fe;
+}
+
+.single-select-mode .pure-checkbox input[type='radio']:checked + label:before {
+  background-color: white;
+}
+
+.single-select-mode .pure-checkbox input[type='checkbox']:checked + label:before {
+  background: none !important;
+}
+
+.selected-item {
+  background: #e9f4ff;
+}
+
+.btn-iceblue {
+  background: #0079fe;
+  border: 1px solid #ccc;
+  color: #fff;
+}
+    </style>
+    <div class="row justify-content-left">
+        <div class="col-md-8">
+            <h1>QUIZ</h1>
+
+            <div class="alert alert-success" *ngIf="success">
+                <strong>Quiz saved!</strong> Good work!.
+            </div>
+
+            <div class="alert alert-danger" *ngIf="error">
+                <strong>Quiz failed!</strong> Please try again later.
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-left">
+        <div class="col-md-8 p-5">
+            <form name="form" role="form" (ngSubmit)="answer()" [formGroup]="quizForm">
+                <div class="form-group">
+                    Please enter your name and pick the Sectors you are currently involved in.
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Your name"
+                           formControlName="name" #name>
+
+                    <div
+                        *ngIf="quizForm.get('name')!.invalid && (quizForm.get('name')!.dirty || quizForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="quizForm.get('name')?.errors?.required">
+                            Your name is required.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="quizForm.get('name')?.errors?.minlength">
+                            Your name is required to be at least 1 character.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="quizForm.get('name')?.errors?.maxlength">
+                            Your name cannot be longer than 50 characters.
+                        </small>
+
+                        <small class="form-text text-danger"
+                               *ngIf="quizForm.get('name')?.errors?.pattern">
+                            Your name can only contain letters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="sectors">Sectors</label>
+                    <angular2-multiselect *ngIf="sectorItems.length > 0"
+                                          [data]="sectorItems"
+                                          [settings]="dropdownSettings"
+                                          [(ngModel)]="selectedSectors"
+                                          formControlName="sectors"
+                                          id="sectors" name="sectors">
+                    </angular2-multiselect>
+                    <div
+                        *ngIf="quizForm.get('sectors')!.invalid && (quizForm.get('sectors')!.dirty || quizForm.get('sectors')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="quizForm.get('sectors')?.errors?.required">
+                            Sector(s) is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="agreedToTerms">Agree to terms</label>
+                    <input type="checkbox" class="form-control" id="agreedToTerms" name="agreedToTerms"
+                           formControlName="agreedToTerms">
+                    <div
+                        *ngIf="quizForm.get('agreedToTerms')!.invalid && (quizForm.get('agreedToTerms')!.dirty || quizForm.get('agreedToTerms')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="quizForm.get('agreedToTerms')?.errors?.required">
+                            Agreement to terms is required.
+                        </small>
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="quizForm.invalid" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
