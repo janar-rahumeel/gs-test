@@ -9,7 +9,7 @@ auto-refreshes when files change on your hard drive.
 npm start
 ```
 
-Access demo application at http://localhost:9000 or http://localhost:8080
+Access demo application at http://localhost:8080
 
 ## Testing
 
