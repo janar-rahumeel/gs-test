@@ -1,21 +1,19 @@
-package ee.geckosolutions.demo.web.rest;
+package ee.geckosolutions.demo.service.rest;
 
 import ee.geckosolutions.demo.TestApp;
 import ee.geckosolutions.demo.domain.PersistentAuditEvent;
 import ee.geckosolutions.demo.repository.PersistenceAuditEventRepository;
 import ee.geckosolutions.demo.security.AuthoritiesConstants;
 
+import ee.geckosolutions.demo.web.rest.AuditResource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;

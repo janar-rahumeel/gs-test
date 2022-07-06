@@ -1,4 +1,4 @@
-package ee.geckosolutions.demo.web.rest.errors;
+package ee.geckosolutions.demo.service.rest.errors;
 
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.http.HttpStatus;

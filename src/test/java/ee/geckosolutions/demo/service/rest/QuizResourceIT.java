@@ -1,4 +1,4 @@
-package ee.geckosolutions.demo.web.rest;
+package ee.geckosolutions.demo.service.rest;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

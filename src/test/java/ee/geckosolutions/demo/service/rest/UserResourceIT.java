@@ -1,4 +1,4 @@
-package ee.geckosolutions.demo.web.rest;
+package ee.geckosolutions.demo.service.rest;
 
 import ee.geckosolutions.demo.TestApp;
 import ee.geckosolutions.demo.domain.Authority;
@@ -7,6 +7,7 @@ import ee.geckosolutions.demo.repository.UserRepository;
 import ee.geckosolutions.demo.security.AuthoritiesConstants;
 import ee.geckosolutions.demo.service.dto.UserDTO;
 import ee.geckosolutions.demo.service.mapper.UserMapper;
+import ee.geckosolutions.demo.web.rest.UserResource;
 import ee.geckosolutions.demo.web.rest.vm.ManagedUserVM;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;

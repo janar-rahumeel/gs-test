@@ -1,4 +1,4 @@
-package ee.geckosolutions.demo.web.rest;
+package ee.geckosolutions.demo.service.rest;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;

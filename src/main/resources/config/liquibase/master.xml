@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
 
     <property name="now" value="now()" dbms="h2"/>
-    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="current_timestamp" dbms="oracle"/>
 
     <property name="floatType" value="float4" dbms="postgresql, h2"/>
     <property name="floatType" value="float" dbms="mysql, oracle, mssql, mariadb"/>
@@ -13,8 +13,44 @@
     <property name="clobType" value="clob" dbms="mysql, oracle, mssql, mariadb, postgresql"/>
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
-    <!-- include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/ -->
-    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
-    <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+
+    <changeSet id="[STORY-1] Create PERSON table" author="janar.rahumeel">
+        <createSequence sequenceName="SEQ_PERSON" startValue="1" incrementBy="1"/>
+        <createTable tableName="PERSON">
+            <column name="ID" type="NUMBER(38)" defaultValueComputed="SEQ_PERSON.NEXTVAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TITLE" type="VARCHAR2(7 CHAR)"/>
+            <column name="IMAGE_URL" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IMAGE_STORED_LOCALLY" type="NUMBER(1)" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IMAGE" type="BLOB"/>
+            <column name="VERSION" type="NUMBER(5)" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(50 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_DATE" type="TIMESTAMP" defaultValueComputed="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_MODIFIED_BY" type="VARCHAR2(50 CHAR)"/>
+            <column name="LAST_MODIFIED_DATE" type="TIMESTAMP"/>
+        </createTable>
+        <addPrimaryKey tableName="PERSON" columnNames="ID" constraintName="PK_PERSON"/>
+        <addForeignKeyConstraint baseTableName="PERSON" baseColumnNames="CREATED_BY"
+                                 constraintName="FK_PERSON_CREATED_BY" referencedTableName="JHI_USER"
+                                 referencedColumnNames="LOGIN"/>
+        <addForeignKeyConstraint baseTableName="PERSON" baseColumnNames="LAST_MODIFIED_BY"
+                                 constraintName="FK_PERSON_LAST_MODIFIED_BY" referencedTableName="JHI_USER"
+                                 referencedColumnNames="LOGIN"/>
+    </changeSet>
+
 </databaseChangeLog>

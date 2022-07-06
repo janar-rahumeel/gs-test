@@ -1,4 +1,4 @@
-package ee.geckosolutions.demo.web.rest;
+package ee.geckosolutions.demo.service.rest;
 
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;

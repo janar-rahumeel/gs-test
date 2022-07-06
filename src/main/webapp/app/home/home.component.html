@@ -8,8 +8,10 @@
 
         <p class="lead">This is your homepage. Before proceeding please answer the to the quiz!</p>
 
-        <jhi-quiz></jhi-quiz>
+        <!--jhi-quiz></jhi-quiz-->
 
+        <a routerLink="person/list">Search People</a>
+        <br/>
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account">You are logged in as user "{{ account.login }}".</span>

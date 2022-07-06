@@ -1,4 +1,4 @@
-package ee.geckosolutions.demo.web.rest;
+package ee.geckosolutions.demo.service.rest;
 
 import ee.geckosolutions.demo.TestApp;
 import ee.geckosolutions.demo.config.Constants;
@@ -11,16 +11,15 @@ import ee.geckosolutions.demo.security.AuthoritiesConstants;
 import ee.geckosolutions.demo.service.UserService;
 import ee.geckosolutions.demo.service.dto.PasswordChangeDTO;
 import ee.geckosolutions.demo.service.dto.UserDTO;
+import ee.geckosolutions.demo.web.rest.AccountResource;
 import ee.geckosolutions.demo.web.rest.vm.KeyAndPasswordVM;
 import ee.geckosolutions.demo.web.rest.vm.ManagedUserVM;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -32,7 +31,7 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static ee.geckosolutions.demo.web.rest.AccountResourceIT.TEST_USER_LOGIN;
+import static ee.geckosolutions.demo.service.rest.AccountResourceIT.TEST_USER_LOGIN;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;

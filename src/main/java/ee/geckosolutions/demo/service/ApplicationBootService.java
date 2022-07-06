@@ -25,7 +25,7 @@ public class ApplicationBootService {
     private final SectorRepository sectorRepository;
 
     @Transactional
-    @EventListener(ApplicationReadyEvent.class)
+    //@EventListener(ApplicationReadyEvent.class)
     public void extractAndStoreSectors() {
         try {
             deleteExistingSectors();

@@ -1,6 +1,8 @@
-package ee.geckosolutions.demo.web.rest.errors;
+package ee.geckosolutions.demo.service.rest.errors;
 
 import ee.geckosolutions.demo.TestApp;
+import ee.geckosolutions.demo.web.rest.errors.ErrorConstants;
+import ee.geckosolutions.demo.web.rest.errors.ExceptionTranslator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
